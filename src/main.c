@@ -1,30 +1,64 @@
 #include "../lib/input_handling.h"
 #include "../lib/word_count.h"
+#include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
+
+void print_usage(const char *);
 
 int main(int argc, char *argv[]) {
-    ReadBuffer *input_buffer = NULL;
+    bool count_flag = false;
+    bool freq_flag = false;
+    char *file_path = NULL;
 
-    if (argc > 1) {
-        input_buffer = read_from_file(argv[1]);
-    } else {
-        input_buffer = read_from_stdin();
+    for (int i = 1; i < argc; ++i) {
+        if (strcmp(argv[i], "-c") == 0) {
+            count_flag = true;
+        } else if (strcmp(argv[i], "-f") == 0) {
+            freq_flag = true;
+        } else if (strcmp(argv[i], "-cf") == 0) {
+            count_flag = 1;
+            freq_flag = 1;
+        } else {
+            file_path = argv[i];
+        }
     }
 
+    // Default to both counting and frequency if no flags are provided
+    if (!count_flag && !freq_flag) {
+        count_flag = true;
+        freq_flag = true;
+    }
+
+    ReadBuffer *input_buffer =
+        (file_path != NULL) ? read_from_file(file_path) : read_from_stdin();
+
     // word counts
-    printf("count words: %d\n", count_words(input_buffer->data));
+    if (count_flag) {
+        printf("count words: %d\n", count_words(input_buffer->data));
+    }
 
     // word frequency count
-    WCNode *wc_list = count_word_frequencies(input_buffer->data, NULL);
-    print_list(wc_list);
-    printf("\n");
+    if (freq_flag) {
+        WCNode *wc_list = count_word_frequencies(input_buffer->data, NULL);
+        print_list(wc_list);
+        printf("\n");
+
+        if (wc_list)
+            free_list(wc_list);
+    }
 
     // free input_buffer
     if (input_buffer)
         free_read_buffer(input_buffer);
-    // free wc_list
-    if (wc_list)
-        free_list(wc_list);
 
     return 0;
+}
+
+void print_usage(const char *prog_name) {
+    printf("Usage: %s [OPTION] [FILE]\n", prog_name);
+    printf("Options:\n");
+    printf("  -c   Count words\n");
+    printf("  -f   Count word frequencies\n");
+    printf("  -cf  Count words and word frequencies (default)\n");
 }
