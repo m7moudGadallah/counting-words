@@ -1,4 +1,4 @@
-# Word Count
+# Counting Words
 
 ## Description
 
