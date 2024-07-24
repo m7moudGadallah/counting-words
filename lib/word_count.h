@@ -2,6 +2,7 @@
 #define WORD_COUNT_H
 
 #include "word_count_list.h"
+#include "word_processing.h"
 #include <stdlib.h>
 
 /**
@@ -19,9 +20,9 @@ int count_words(const char *buffer);
  * updates the word count list, and returns a pointer to the head of the list.
  *
  * @param buffer String to count word frequencies in.
- * @param head Pointer to the head of the word count list.
+ * @param head Head of the word count list.
  * @return WCNode* Returns a pointer to the head of the word count list.
  */
-WCNode *count_word_frequencies(const char *buffer, WCNode **head);
+WCNode *count_word_frequencies(const char *buffer, WCNode *head);
 
 #endif // WORD_COUNT_H
