@@ -38,19 +38,12 @@ WCNode *insert_or_update_wc_node(WCNode **head, const char *word) {
 
     WCNode *new_node = create_wc_node(word);
 
-    if (new_node == NULL)
+    if (new_node == NULL) {
         return NULL;
-
-    if (*head == NULL)
-        *head = new_node;
-    else {
-        WCNode *current = *head;
-
-        while (current->next) {
-            current = current->next;
-        }
-        current->next = new_node;
     }
+
+    new_node->next = head;
+    *head = new_node;
 
     return new_node;
 }
