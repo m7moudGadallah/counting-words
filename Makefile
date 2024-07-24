@@ -10,7 +10,7 @@ LIB_FILES = $(wildcard $(LIB_DIR)/*.c)
 OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES)) \
             $(patsubst $(LIB_DIR)/%.c, $(OBJ_DIR)/%.o, $(LIB_FILES))
 
-TARGET = main
+TARGET = wordcount
 
 all: $(TARGET)
 
