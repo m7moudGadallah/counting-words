@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
     bool count_flag = false;
     bool freq_flag = false;
     bool sort_flag = false;
+    bool reverse_flag = false;
     char *file_path = NULL;
 
     for (int i = 1; i < argc; ++i) {
@@ -25,6 +26,9 @@ int main(int argc, char *argv[]) {
                     break;
                 case 's':
                     sort_flag = true;
+                    break;
+                case 'r':
+                    reverse_flag = true;
                     break;
                 default:
                     print_usage(argv[0]);
@@ -58,7 +62,7 @@ int main(int argc, char *argv[]) {
             sort_wc_list(&wc_list, compare_wc_nodes);
         }
 
-        print_list(wc_list);
+        print_list(wc_list, reverse_flag);
         printf("\n");
 
         if (wc_list)
@@ -78,6 +82,7 @@ void print_usage(const char *prog_name) {
     printf("  -c   Count words\n");
     printf("  -f   Count word frequencies\n");
     printf("  -s   Sort word frequencies\n");
+    printf("  -r   Print word frequencies in reverse order\n");
     printf("  -cf  Count words and word frequencies (default)\n");
 }
 
