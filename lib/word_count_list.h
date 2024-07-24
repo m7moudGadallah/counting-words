@@ -1,8 +1,8 @@
 #ifndef WORD_COUNT_LIST
 #define WORD_COUNT_LIST
 
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 // Word count node structure for word count linked list
 typedef struct word_count_node {
@@ -35,7 +35,7 @@ WCNode *insert_or_update_wc_node(WCNode *head, const char *word);
 
 /**
  * @brief Print word count list.
- * 
+ *
  * @param head Head of the word count list.
  * @return void
  */
@@ -43,7 +43,7 @@ void print_list(const WCNode *head);
 
 /**
  * @brief Free word count list
- * 
+ *
  * @param head Head of the word count list
  * @return void
  */
