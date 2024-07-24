@@ -44,6 +44,16 @@ WCNode *create_wc_node(const char *word);
 WCNode *insert_or_update_wc_node(WCNode **head, const char *word);
 
 /**
+ * @brief Sort word count list
+ *
+ * @param head Pointer to head of word count list
+ * @param comp_fn_ptr  Pointer to compare function
+ * @return void
+ */
+void sort_wc_list(WCNode **head,
+                  int (*comp_fn_ptr)(WCNode *node1, WCNode *node2));
+
+/**
  * @brief Print word count list.
  *
  * @param head Head of the word count list.

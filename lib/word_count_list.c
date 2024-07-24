@@ -55,6 +55,26 @@ WCNode *insert_or_update_wc_node(WCNode **head, const char *word) {
     return new_node;
 }
 
+void sort_wc_list(WCNode **head,
+                  int (*comp_fn_ptr)(WCNode *node1, WCNode *node2)) {
+    if (head == NULL || *head == NULL || comp_fn_ptr == NULL)
+        return;
+    WCNode *current, *index;
+    for (current = *head; current != NULL; current = current->next) {
+        for (index = current->next; index != NULL; index = index->next) {
+            if (comp_fn_ptr(current, index) > 0) {
+                // Swap data
+                char *temp_word = current->word;
+                int temp_count = current->count;
+                current->word = index->word;
+                current->count = index->count;
+                index->word = temp_word;
+                index->count = temp_count;
+            }
+        }
+    }
+}
+
 void print_list(const WCNode *head) {
     while (head) {
         printf("%s: %d\n", head->word, head->count);
