@@ -42,7 +42,7 @@ WCNode *insert_or_update_wc_node(WCNode **head, const char *word) {
         return NULL;
     }
 
-    new_node->next = head;
+    new_node->next = *head;
     *head = new_node;
 
     return new_node;
