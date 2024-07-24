@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Word count node structure for word count linked list
 typedef struct word_count_node {
@@ -12,12 +13,21 @@ typedef struct word_count_node {
 } WCNode;
 
 /**
+ * @brief Find a word count node for a given word
+ *
+ * @param head Head of the word count list
+ * @param word Word to search for it
+ * @return WCNode* Returns pointer to node if it exists, otherwise returns NULL
+ */
+WCNode *find_wc_node(const WCNode *head, const char *word);
+
+/**
  * @brief Create a new word count node for a given word
  *
  * @param word Word to be stored in the node.
  * @return WCNode* Returns a pointer to the newly created node
  */
-WCNode *create_wc_node(char *word);
+WCNode *create_wc_node(const char *word);
 
 /**
  * @brief Insert a new word count node or update the count of an existing one in
@@ -27,11 +37,11 @@ WCNode *create_wc_node(char *word);
  * increments the count of the existing node. If not found, it creates a new
  * node with the word and appends it to the list.
  *
- * @param head Head of the word count list.
+ * @param head Pointer to head of the word count list.
  * @param word Word to insert or update.
  * @return WCNode* Returns a pointer to the node of the given word.
  */
-WCNode *insert_or_update_wc_node(WCNode *head, const char *word);
+WCNode *insert_or_update_wc_node(WCNode **head, const char *word);
 
 /**
  * @brief Print word count list.
