@@ -3,8 +3,6 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-    printf("Hello, World!\n");
-
     ReadBuffer *input_buffer = NULL;
 
     if (argc > 1) {
@@ -14,7 +12,6 @@ int main(int argc, char *argv[]) {
     }
 
     // word counts
-    printf("input: %s\n----\n", input_buffer->data);
     printf("count words: %d\n", count_words(input_buffer->data));
 
     // word frequency count
