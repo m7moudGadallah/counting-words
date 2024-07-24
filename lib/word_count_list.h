@@ -1,6 +1,7 @@
 #ifndef WORD_COUNT_LIST
 #define WORD_COUNT_LIST
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,9 +58,11 @@ void sort_wc_list(WCNode **head,
  * @brief Print word count list.
  *
  * @param head Head of the word count list.
+ * @param reverse Option to print list forward or backward, true means backward
+ * otherwise means forward
  * @return void
  */
-void print_list(const WCNode *head);
+void print_list(const WCNode *head, bool reverse);
 
 /**
  * @brief Free word count list

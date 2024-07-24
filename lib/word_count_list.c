@@ -68,11 +68,25 @@ void sort_wc_list(WCNode **head,
     }
 }
 
-void print_list(const WCNode *head) {
-    while (head) {
+void print_list_forward(const WCNode *head) {
+    if (head) {
         printf("%s: %d\n", head->word, head->count);
-        head = head->next;
+        print_list_forward(head->next);
     }
+}
+
+void print_list_backward(const WCNode *head) {
+    if (head) {
+        print_list_backward(head->next);
+        printf("%s: %d\n", head->word, head->count);
+    }
+}
+
+void print_list(const WCNode *head, bool reverse) {
+    if (reverse)
+        print_list_backward(head);
+    else
+        print_list_forward(head);
 }
 
 void free_list(WCNode *head) {
